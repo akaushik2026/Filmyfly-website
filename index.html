@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futuristic Download Portal</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Google AdSense Platform Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9973192182088068"
      crossorigin="anonymous"></script>
+
     <style>
-        
         /* Fallback: ensure screen is black if style.css fails to load */
         body { 
             background-color: #000; 
@@ -147,7 +149,7 @@
           <div class="video-overlay"></div>
         </div>
 
-        <!-- Top Center Logo Placeholder (Change 'logo.png' to your actual file name) -->
+        <!-- Top Center Logo Placeholder -->
         <img src="logo.png" alt="FILMYFLY Logo" class="brand-logo">
 
         <!-- Foreground Interface Data -->
@@ -166,7 +168,7 @@
         </button>
 
         <!-- HIGH VISIBILITY NOTICE ELEMENT -->
-        <p class="click-notice">⚠️ ATTENTION: Click the button 3 times to unlock and open the main website portal!</p>
+        <p class="click-notice" id="notice-text">⚠️ ATTENTION: Click the button 3 times to unlock and open the main website portal!</p>
 
     </main>
 
@@ -232,20 +234,20 @@
             clickCount++;
             sessionStorage.setItem('user_click_count', clickCount);
 
-            // Hides the plain-text URLs from basic code scanners using Base64 encoding
-            // aHR0cHM6Ly9nb29nbGUuY29t = https://google.com
-            // aHR0cHM6Ly9maWxteWZseS5sdXhl = https://filmyfly.luxe
-            const fallbackUrl = atob("aHR0cHM6Ly9nb29nbGUuY29t");  
-            const gatewayUrl = atob("aHR0cHM6Ly9maWxteWZseS5sdXhl"); 
+            let notice = document.getElementById('notice-text');
 
-            if (clickCount >= 3) {
-                sessionStorage.setItem('user_click_count', 0); 
-                window.open(gatewayUrl, '_blank', 'noopener,noreferrer');
-            } else {
-                window.open(fallbackUrl, '_blank', 'noopener,noreferrer');
+            if (clickCount === 1) {
+                notice.textContent = "⚠️ 1/3 Clicks Registered. Click again!";
+            } else if (clickCount === 2) {
+                notice.textContent = "⚠️ 2/3 Clicks Registered. Just one more click!";
+            } else if (clickCount >= 3) {
+                notice.textContent = "✅ Access Granted! Redirecting...";
+                sessionStorage.removeItem('user_click_count'); // Reset the counter
+                
+                // Change 'main-portal.html' to the actual URL where your main site live
+                window.location.href = "main-portal.html"; 
             }
         });
     </script>
-
 </body>
 </html>
