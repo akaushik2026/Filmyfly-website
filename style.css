@@ -1,0 +1,212 @@
+/* ==========================================================================
+   1. CORE RESET & VISUAL VARIABLES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --neon-cyan: #00f3ff;
+    --neon-pink: #ff0055;
+    --btn-bg: rgba(0, 0, 0, 0.6);
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    overflow-x: hidden;
+    background-color: #000000; 
+} 
+
+/* ==========================================================================
+   2. LOCALIZED VIDEO BACKGROUND ENGINE
+   ========================================================================== */
+.video-background {
+    position: absolute; /* Keeps video layer bound inside the content wrapper */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Embedded base layer */
+    overflow: hidden;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents video squishing inside text element limits */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 243, 255, 0.1));
+    z-index: 2; /* Sits over raw video but underneath text layouts */
+}
+
+/* ==========================================================================
+   3. STRUCTURAL CONTENT LAYOUT BLOCK (LOCAL BOUNDARY CONTAINER)
+   ========================================================================== */
+.content {
+    position: relative; /* Context framework parent rule added */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #ffffff;
+    text-align: center;
+    padding: 24px;
+    overflow: hidden; /* Cleans any video edge overflow issues */
+}
+
+/* Typography elements elevated cleanly above absolute matrix overlays */
+.content h1, 
+.content p, 
+.futuristic-btn {
+    position: relative;
+    z-index: 3; 
+}
+
+.content h1 {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.content p {
+    font-size: 1.2rem;
+    margin-bottom: 36px;
+    opacity: 0.9;
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   4. CYBERPUNK INTERACTIVE TECH BUTTON PROPERTIES
+   ========================================================================== */
+.futuristic-btn {
+    padding: 18px 44px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #ffffff;
+    background: var(--btn-bg);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 0px; 
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+    outline: none;
+    box-shadow: 0 0 12px rgba(0, 243, 255, 0.25);
+    clip-path: polygon(90% 0, 100% 25%, 100% 100%, 10% 100%, 0% 75%, 0 0);
+}
+
+.futuristic-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.5), transparent);
+    transition: all 0.55s ease-in-out;
+}
+
+.futuristic-btn::after {
+    content: 'ONLINE';
+    position: absolute;
+    bottom: -2px;
+    right: 18px;
+    font-size: 0.55rem;
+    color: var(--neon-cyan);
+    letter-spacing: 1px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.futuristic-btn:hover {
+    color: #000000;
+    background: var(--neon-cyan);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.65), 0 0 60px rgba(0, 243, 255, 0.35);
+}
+
+.futuristic-btn:hover::before {
+    left: 100%;
+}
+
+.futuristic-btn:hover::after {
+    color: #000000;
+}
+
+.btn-text {
+    position: relative;
+    z-index: 4; 
+}
+
+.futuristic-btn:active .btn-glitch-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--neon-pink);
+    z-index: 1;
+    animation: button-glitch 0.18s steps(2) infinite;
+}
+
+@keyframes button-glitch {
+    0% { clip-path: inset(30% 0 60% 0); transform: skew(-5deg); }
+    20% { clip-path: inset(85% 0 2% 0); transform: skew(4deg); }
+    40% { clip-path: inset(8% 0 80% 0); transform: skew(-3deg); }
+    60% { clip-path: inset(70% 0 8% 0); transform: skew(6deg); }
+    80% { clip-path: inset(15% 0 65% 0); transform: skew(-2deg); }
+    100% { clip-path: inset(35% 0 35% 0); transform: skew(0deg); }
+}
+
+/* ==========================================================================
+   5. RESPONSIVE MEDIA COMPACTION VIEWS
+   ========================================================================== */
+@media (max-width: 768px) {
+    .content h1 {
+        font-size: 2.2rem;
+        letter-spacing: 1px;
+    }
+    
+    .content p {
+        font-size: 1rem;
+        margin-bottom: 28px;
+    }
+
+    .futuristic-btn {
+        padding: 14px 34px;
+        font-size: 0.95rem;
+        letter-spacing: 2px;
+    }
+}
+
+.site-header {
+  /* 1. Point to your logo file path */
+  background-image: url('img.jpeg');
+
+  /* 2. Prevent the logo from tiling/repeating */
+  background-repeat: no-repeat;
+
+  /* 3. Choose position: 'center', 'left center', or 'right center' */
+  background-position: left center;
+
+  /* 4. 'contain' scales the logo to fit without cropping */
+  background-size: contain;
+
+  /* 5. Give the header enough height and width to show the logo */
+  height: 80px; 
+  width: 100%;
+}
+

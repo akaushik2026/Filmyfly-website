@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | FILMYFLY</title>
+    <style>
+        /* Base styles matching your futuristic theme */
+        body { 
+            background-color: #050508; 
+            background-image: radial-gradient(circle at center, #0a1128 0%, #050508 100%);
+            color: #ffffff; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Security: Disables text selection */
+        body, html {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Content Container */
+        .content {
+            flex: 1;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(10, 10, 15, 0.7);
+            border: 1px solid #1a2634;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.05);
+        }
+
+        h1 {
+            color: #00ffcc;
+            text-transform: uppercase;
+            font-size: 28px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #1a2634;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #00ffcc;
+            font-size: 18px;
+            margin-top: 25px;
+            letter-spacing: 1px;
+        }
+
+        p {
+            color: #b0c4de;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .highlight {
+            color: #ff3366;
+            font-weight: bold;
+        }
+
+        /* Footer styling to match main page */
+        .site-footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Terms Content -->
+    <main class="content">
+        <h1>Terms of Service</h1>
+        <p>Welcome to FILMYFLY. By accessing our platform, you agree to comply with and be bound by the following legally binding terms conditions.</p>
+
+        <h2>1. Nature of Service</h2>
+        <p>FILMYFLY serves strictly as an indexing directory. We provide structured navigational links to external third-party websites and do not host, store, or stream any media files directly on our servers.</p>
+
+        <h2>2. Intellectual Property & Unauthorized Modification</h2>
+        <p>All source code, design elements, scripts, layout configurations, and branding assets on this portal are the exclusive intellectual property of FILMYFLY.</p>
+        <p class="highlight">Any unauthorized modification, reverse-engineering, tampering with the link controller engine, script injection, or cloning of this source code is strictly prohibited.</p>
+
+        <h2>3. Legal Action & Enforcement</h2>
+        <p>Failure to comply with these terms, or any attempt to alter the operational framework of this portal, will result in immediate termination of access. The administration reserves the right to pursue strict legal action, including civil litigation and reporting to appropriate digital law enforcement authorities, against individuals or entities executing unauthorized customization or tampering.</p>
+
+        <h2>4. External Links Liability</h2>
+        <p>Because we only provide navigational links, FILMYFLY exerts no operational control over third-party domains. We accept no liability for the content, advertisements, safety, or practices of external platforms.</p>
+    </main>
+
+    <!-- Footer Template -->
+    <footer class="site-footer">
+        <p>&copy; <span id="current-year"></span> FILMYFLY. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript Security Engine -->
+    <script>
+        // Disables right-click context menu
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // Disables keyboard shortcuts for Inspect Element / Developer Tools
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false; // F12
+            if(e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) return false; // Ctrl+Shift+I/J/C
+            if(e.ctrlKey && e.keyCode == 85) return false; // Ctrl+U
+        };
+
+        // Dynamic Copyright Year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>

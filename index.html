@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Download Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Fallback: ensure screen is black if style.css fails to load */
+        body { 
+            background-color: #000; 
+            color: #fff; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh;
+        }
+        /* Prevents users from selecting text or images on the site */
+        body, html {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        /* Layout fix to push footer down */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Top Center Logo Container */
+        .brand-logo {
+            max-width: 150px; /* Limits width so it remains clean on mobile */
+            height: auto;
+            margin-bottom: 20px; /* Space between logo and headline */
+            filter: drop-shadow(0 0 10px rgba(0, 255, 204, 0.5)); /* Futuristic neon glow */
+            pointer-events: none; /* Prevents users from dragging or saving the logo image */
+        }
+        
+        /* Main Text Styling */
+        h1 {
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+        p {
+            margin-bottom: 25px;
+        }
+
+        /* Main Tab Navigation Link Text */
+        .main-tab-nav {
+            margin-bottom: 25px;
+        }
+        .main-tab-nav a {
+            color: #ff3366; /* Vibrant futuristic accent color */
+            text-decoration: none;
+            font-weight: bold;
+            font-family: sans-serif;
+            font-size: 16px;
+            letter-spacing: 1px;
+            transition: opacity 0.2s ease, text-shadow 0.2s ease;
+            display: inline-block;
+        }
+        .main-tab-nav a:hover {
+            opacity: 0.8;
+            text-shadow: 0 0 8px rgba(255, 51, 102, 0.6);
+        }
+
+        /* High-Visibility Notice Text */
+        .click-notice {
+            color: #ccff00; /* High-intensity neon warning chartreuse */
+            font-family: sans-serif;
+            font-size: 14px;
+            font-weight: 800; /* Heavy weight forces readability */
+            letter-spacing: 0.8px;
+            margin-top: 25px;
+            margin-bottom: 0;
+            max-width: 360px;
+            line-height: 1.5;
+            text-transform: uppercase; /* Forces immediate cognitive awareness */
+            animation: pulse-glow 2s infinite alternate; /* Dynamic attraction loop */
+        }
+
+        /* Attraction Glow Loop Configuration */
+        @keyframes pulse-glow {
+            0% {
+                text-shadow: 0 0 4px rgba(204, 255, 0, 0.4);
+                transform: scale(1);
+            }
+            100% {
+                text-shadow: 0 0 15px rgba(204, 255, 0, 0.9), 0 0 20px rgba(204, 255, 0, 0.4);
+                transform: scale(1.02); /* Slight scale breathing grabs human attention */
+            }
+        }
+
+        /* Standard Copyright Footer Styling */
+        .site-footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            font-family: sans-serif;
+            border-top: 1px solid #222;
+            z-index: 10;
+            position: relative;
+        }
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        /* Terms Link Styling */
+        .footer-links a {
+            color: #00ffcc; /* Futuristic accent color */
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            display: inline-block;
+        }
+        .footer-links a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Content Area with Embedded Video Background -->
+    <main class="content">
+        
+        <!-- Video engine bound directly inside the content layout block -->
+        <div class="video-background">
+          <video autoplay loop muted playsinline>
+            <source src="bgd.mp4" type="video/mp4">
+          </video>
+          <div class="video-overlay"></div>
+        </div>
+
+        <!-- Top Center Logo Placeholder (Change 'logo.png' to your actual file name) -->
+        <img src="logo.png" alt="FILMYFLY Logo" class="brand-logo">
+
+        <!-- Foreground Interface Data -->
+        <h1>WELCOME TO FILMYFLY</h1>
+        <p>Watch Movies Online And Download Them</p>
+        
+        <!-- Main tab content block above buttons & terms -->
+        <div class="main-tab-nav">
+            <a href="index.html" id="back-home-link" target="_self">&larr; Back to Main Site</a>
+        </div>
+        
+        <!-- Button contains the correct id targeted by the script below -->
+        <button class="futuristic-btn" id="download-link">
+            <span class="btn-text">View Full SITE</span>
+            <span class="btn-glitch-layer"></span>
+        </button>
+
+        <!-- HIGH VISIBILITY NOTICE ELEMENT -->
+        <p class="click-notice">⚠️ ATTENTION: Click the button 3 times to unlock and open the main website portal!</p>
+
+    </main>
+
+    <!-- Professional Copyright & Terms Footer Template -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; <span id="current-year"></span> FILMYFLY. All Rights Reserved.</p>
+            <div class="footer-links">
+                <!-- EXPLICIT ROUTING: Forced target handling -->
+                <a href="terms.html" id="terms-link" target="_self">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Security & Link Controller Engine -->
+    <script>
+        // --- 1. CODE PROTECTION & SECURITY SCRIPTS ---
+
+        // Disables right-click context menu
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // Disables keyboard shortcuts safely without interfering with links
+        window.addEventListener('keydown', function(e) {
+            // Blocks F12
+            if(e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            // Blocks Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+            if(e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+                e.preventDefault();
+                return false;
+            }
+            // Blocks Ctrl+U (View Source)
+            if(e.ctrlKey && e.keyCode === 85) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // --- 2. DYNAMIC COPYRIGHT YEAR ---
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // --- 3. FORCED SAME-TAB ROUTING FOR TERMS ---
+        document.getElementById('terms-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = this.href;
+        });
+
+        // --- 4. FORCED SAME-TAB ROUTING FOR BACK TO MAIN LINK ---
+        document.getElementById('back-home-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = this.href;
+        });
+
+        // --- 5. OBFUSCATED LINK CONTROLLER ENGINE ---
+        document.getElementById('download-link').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            let clickCount = parseInt(sessionStorage.getItem('user_click_count')) || 0;
+            clickCount++;
+            sessionStorage.setItem('user_click_count', clickCount);
+
+            // Hides the plain-text URLs from basic code scanners using Base64 encoding
+            // aHR0cHM6Ly9nb29nbGUuY29t = https://google.com
+            // aHR0cHM6Ly9maWxteWZseS5sdXhl = https://filmyfly.luxe
+            const fallbackUrl = atob("aHR0cHM6Ly9nb29nbGUuY29t");  
+            const gatewayUrl = atob("aHR0cHM6Ly9maWxteWZseS5sdXhl"); 
+
+            if (clickCount >= 3) {
+                sessionStorage.setItem('user_click_count', 0); 
+                window.open(gatewayUrl, '_blank', 'noopener,noreferrer');
+            } else {
+                window.open(fallbackUrl, '_blank', 'noopener,noreferrer');
+            }
+        });
+    </script>
+
+</body>
+</html>
