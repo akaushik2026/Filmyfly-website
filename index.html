@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     
     <!-- Google AdSense Platform Script -->
-    <script async src="https://googlesyndication.com"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9973192182088068"
      crossorigin="anonymous"></script>
 
     <style>
@@ -95,7 +95,7 @@
         /* Attraction Glow Loop Configuration */
         @keyframes pulse-glow {
             0% {
-                text-shadow: 0 0 4px rgba(204, 204, 0, 0.4);
+                text-shadow: 0 0 4px rgba(204, 255, 0, 0.4);
                 transform: scale(1);
             }
             100% {
@@ -134,165 +134,5 @@
             color: #ffffff;
             text-decoration: underline;
         }
-
-        /* --- COOKIE CONSENT BANNER DESIGN --- */
-        .consent-banner {
-            position: fixed;
-            bottom: -200px; 
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 800px;
-            background: rgba(10, 10, 10, 0.95);
-            border: 1px solid #00ffcc;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
-            border-radius: 8px;
-            padding: 15px 25px;
-            z-index: 9999;
-            transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-family: sans-serif;
-        }
-        .consent-banner.show {
-            bottom: 20px; 
-        }
-        .consent-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            text-align: center;
-        }
-        .consent-content p {
-            font-size: 13px;
-            color: #ccc;
-            margin: 0;
-            line-height: 1.4;
-        }
-        .consent-content p span {
-            color: #00ffcc;
-            font-weight: bold;
-        }
-        .consent-buttons {
-            display: flex;
-            gap: 15px;
-        }
-        .consent-btn {
-            background: transparent;
-            border: 1px solid;
-            padding: 8px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 12px;
-            text-transform: uppercase;
-            transition: all 0.2s ease;
-        }
-        .consent-btn.accept {
-            border-color: #00ffcc;
-            color: #00ffcc;
-        }
-        .consent-btn.accept:hover {
-            background: #00ffcc;
-            color: #000;
-            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
-        }
-        .consent-btn.decline {
-            border-color: #ff3366;
-            color: #ff3366;
-        }
-        .consent-btn.decline:hover {
-            background: #ff3366;
-            color: #fff;
-            box-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
-        }
-        @media (min-width: 768px) {
-            .consent-content {
-                flex-direction: row;
-                text-align: left;
-                justify-content: space-between;
-            }
-        }
     </style>
 </head>
-<body>
-
-    <!-- FUTURISTIC COOKIE CONSENT BANNER -->
-    <div id="cookie-consent-banner" class="consent-banner">
-        <div class="consent-content">
-            <p>📡 <span>SYSTEM NOTICE:</span> We use tracking cookies to personalize website content and analyze site traffic. By clicking "Accept All", you consent to our ad partner data processing.</p>
-            <div class="consent-buttons">
-                <button id="accept-cookies-btn" class="consent-btn accept">Accept All</button>
-                <button id="decline-cookies-btn" class="consent-btn decline">Decline</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Content Area with Embedded Video Background -->
-    <main class="content">
-        
-        <div class="video-background">
-          <video autoplay loop muted playsinline>
-            <source src="bgd.mp4" type="video/mp4">
-          </video>
-          <div class="video-overlay"></div>
-        </div>
-
-        <img src="logo.png" alt="FILMYFLY Logo" class="brand-logo">
-
-        <h1>WELCOME TO FILMYFLY</h1>
-        <p>Watch Movies Online And Download Them</p>
-        
-        <div class="main-tab-nav">
-            <a href="index.html" id="back-home-link" target="_self">&larr; Back to Main Site</a>
-        </div>
-        
-        <!-- RESTORED: View Full SITE matching the exact original CSS rules -->
-        <button class="futuristic-btn" id="download-link">
-            <span class="btn-text">View Full SITE</span>
-            <span class="btn-glitch-layer"></span>
-        </button>
-
-        <p class="click-notice" id="notice-text">⚠️ ATTENTION: Click the button to unlock and open the main website portal!</p>
-
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-content">
-            <p>&copy; <span id="current-year"></span> FILMYFLY. All Rights Reserved.</p>
-            <div class="footer-links">
-                <a href="terms.html" id="terms-link" target="_self">Terms of Service</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // --- 1. CODE PROTECTION & SECURITY SCRIPTS ---
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        window.addEventListener('keydown', function(e) {
-            if(e.keyCode === 123) {
-                e.preventDefault();
-                return false;
-            }
-            if(e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
-                e.preventDefault();
-                return false;
-            }
-            if(e.ctrlKey && e.keyCode === 85) {
-                e.preventDefault();
-                return false;
-            }
-        });
-
-        // --- 2. DYNAMIC COPYRIGHT YEAR ---
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // --- 3. FORCED SAME-TAB ROUTING FOR TERMS ---
-        document.getElementById('terms-link').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.location.href = this.href;
-        });
-
-        // --- 4. FORCED SAME-TAB ROUTING FOR BACK TO MAIN LINK ---
