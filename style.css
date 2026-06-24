@@ -209,4 +209,20 @@ body, html {
   height: 80px; 
   width: 100%;
 }
+/* Optimize layout performance rules */
+.click-notice {
+    /* Keep your existing styles here */
+    will-change: transform, text-shadow; /* Forces GPU hardware acceleration */
+}
+
+@keyframes pulse-glow {
+    0% {
+        text-shadow: 0 0 4px rgba(204, 255, 0, 0.4);
+        transform: scale3d(1, 1, 1); /* 3D matrix forces hardware rendering */
+    }
+    100% {
+        text-shadow: 0 0 15px rgba(204, 255, 0, 0.9);
+        transform: scale3d(1.02, 1.02, 1);
+    }
+}
 
