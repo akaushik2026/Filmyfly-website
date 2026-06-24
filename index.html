@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futuristic Download Portal</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Google AdSense Platform Script -->
+    <script async src="https://googlesyndication.com" crossorigin="anonymous"></script>
+    
     <style>
         /* Fallback: ensure screen is black if style.css fails to load */
         body { 
@@ -129,14 +133,102 @@
             color: #ffffff;
             text-decoration: underline;
         }
+
+        /* --- COOKIE CONSENT BANNER DESIGN --- */
+        .consent-banner {
+            position: fixed;
+            bottom: -200px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 800px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid #00ffcc;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+            border-radius: 8px;
+            padding: 15px 25px;
+            z-index: 9999;
+            transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: sans-serif;
+        }
+        .consent-banner.show {
+            bottom: 20px; 
+        }
+        .consent-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            text-align: center;
+        }
+        .consent-content p {
+            font-size: 13px;
+            color: #ccc;
+            margin: 0;
+            line-height: 1.4;
+        }
+        .consent-content p span {
+            color: #00ffcc;
+            font-weight: bold;
+        }
+        .consent-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        .consent-btn {
+            background: transparent;
+            border: 1px solid;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+        .consent-btn.accept {
+            border-color: #00ffcc;
+            color: #00ffcc;
+        }
+        .consent-btn.accept:hover {
+            background: #00ffcc;
+            color: #000;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+        }
+        .consent-btn.decline {
+            border-color: #ff3366;
+            color: #ff3366;
+        }
+        .consent-btn.decline:hover {
+            background: #ff3366;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+        }
+        @media (min-width: 768px) {
+            .consent-content {
+                flex-direction: row;
+                text-align: left;
+                justify-content: space-between;
+            }
+        }
     </style>
 </head>
 <body>
 
+    <!-- FUTURISTIC COOKIE CONSENT BANNER -->
+    <div id="cookie-consent-banner" class="consent-banner">
+        <div class="consent-content">
+            <p>📡 <span>SYSTEM NOTICE:</span> We use tracking cookies to personalize website content and analyze site traffic. By clicking "Accept All", you consent to our ad partner data processing.</p>
+            <div class="consent-buttons">
+                <button id="accept-cookies-btn" class="consent-btn accept">Accept All</button>
+                <button id="decline-cookies-btn" class="consent-btn decline">Decline</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content Area with Embedded Video Background -->
     <main class="content">
         
-        <!-- Video engine bound directly inside the content layout block -->
         <div class="video-background">
           <video autoplay loop muted playsinline>
             <source src="bgd.mp4" type="video/mp4">
@@ -144,62 +236,48 @@
           <div class="video-overlay"></div>
         </div>
 
-        <!-- Top Center Logo Placeholder (Change 'logo.png' to your actual file name) -->
         <img src="logo.png" alt="FILMYFLY Logo" class="brand-logo">
 
-        <!-- Foreground Interface Data -->
         <h1>WELCOME TO FILMYFLY</h1>
         <p>Watch Movies Online And Download Them</p>
         
-        <!-- Main tab content block above buttons & terms -->
         <div class="main-tab-nav">
             <a href="index.html" id="back-home-link" target="_self">&larr; Back to Main Site</a>
         </div>
         
-        <!-- Button contains the correct id targeted by the script below -->
         <button class="futuristic-btn" id="download-link">
             <span class="btn-text">View Full SITE</span>
             <span class="btn-glitch-layer"></span>
         </button>
 
-        <!-- HIGH VISIBILITY NOTICE ELEMENT -->
-        <p class="click-notice">⚠️ ATTENTION: Click the button 3 times to unlock and open the main website portal!</p>
+        <p class="click-notice" id="notice-text">⚠️ ATTENTION: Click the button 3 times to unlock and open the main website portal!</p>
 
     </main>
 
-    <!-- Professional Copyright & Terms Footer Template -->
     <footer class="site-footer">
         <div class="footer-content">
             <p>&copy; <span id="current-year"></span> FILMYFLY. All Rights Reserved.</p>
             <div class="footer-links">
-                <!-- EXPLICIT ROUTING: Forced target handling -->
                 <a href="terms.html" id="terms-link" target="_self">Terms of Service</a>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript Security & Link Controller Engine -->
     <script>
         // --- 1. CODE PROTECTION & SECURITY SCRIPTS ---
-
-        // Disables right-click context menu
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
 
-        // Disables keyboard shortcuts safely without interfering with links
         window.addEventListener('keydown', function(e) {
-            // Blocks F12
             if(e.keyCode === 123) {
                 e.preventDefault();
                 return false;
             }
-            // Blocks Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
             if(e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
                 e.preventDefault();
                 return false;
             }
-            // Blocks Ctrl+U (View Source)
             if(e.ctrlKey && e.keyCode === 85) {
                 e.preventDefault();
                 return false;
@@ -218,31 +296,3 @@
         // --- 4. FORCED SAME-TAB ROUTING FOR BACK TO MAIN LINK ---
         document.getElementById('back-home-link').addEventListener('click', function(e) {
             e.preventDefault();
-            window.location.href = this.href;
-        });
-
-        // --- 5. OBFUSCATED LINK CONTROLLER ENGINE ---
-        document.getElementById('download-link').addEventListener('click', function(event) {
-            event.preventDefault();
-
-            let clickCount = parseInt(sessionStorage.getItem('user_click_count')) || 0;
-            clickCount++;
-            sessionStorage.setItem('user_click_count', clickCount);
-
-            // Hides the plain-text URLs from basic code scanners using Base64 encoding
-            // aHR0cHM6Ly9nb29nbGUuY29t = https://google.com
-            // aHR0cHM6Ly9maWxteWZseS5sdXhl = https://filmyfly.luxe
-            const fallbackUrl = atob("aHR0cHM6Ly9nb29nbGUuY29t");  
-            const gatewayUrl = atob("aHR0cHM6Ly9maWxteWZseS5sdXhl"); 
-
-            if (clickCount >= 3) {
-                sessionStorage.setItem('user_click_count', 0); 
-                window.open(gatewayUrl, '_blank', 'noopener,noreferrer');
-            } else {
-                window.open(fallbackUrl, '_blank', 'noopener,noreferrer');
-            }
-        });
-    </script>
-
-</body>
-</html>
