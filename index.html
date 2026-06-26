@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filmyfly2026-Bollywood movies, South Hindi dubbed movies, Hollywood Hindi movies, animation films, TV shows and Hindi web series updates with 480p, 720p and ...</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- 🟢 FIXED: Your Google AdSense Auto Ads Code Integrated Successfully -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9973192182088068"
+     crossorigin="anonymous"></script>
+
     <style>
         /* Core Reset & Fallback */
         * { 
@@ -36,6 +41,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
         .video-overlay {
             position: absolute;
@@ -74,25 +80,22 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            flex-wrap: wrap; /* Allows safe visual wrapping to prevent small mobile screens from cracking text structures */
+            flex-wrap: wrap; 
             gap: 0.3em; 
             margin-top: 0;
             margin-bottom: 20px;
             letter-spacing: 1px;
-            font-size: 3.5rem; /* Increased base font size for an ultra-premium widescreen layout signature */
+            font-size: 3.5rem; 
             text-transform: uppercase;
         }
 
         /* Large inline graphic configuration metrics */
         .heading-logo {
-            height: 4em; /* Increased proportional scale limit to lift boundary constraints and make the logo large */
-            width: auto;   /* Maintains core structural file dimensions securely without layout squishing */
+            height: 4em; 
+            width: auto;   
             display: block;
-            filter: drop-shadow(0 0 15px rgba(255, 51, 102, 0.7)); /* Reinforced cyberpunk drop glow footprint */
-            
-            /* 🟢 FIXED: Shifts the logo container exactly 10px to the left */
+            filter: drop-shadow(0 0 15px rgba(255, 51, 102, 0.7)); 
             margin-left: -40px; 
-            
             user-select: none;
             -webkit-user-drag: none;
             pointer-events: none;
@@ -106,7 +109,47 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        
+        /* Futuristic Button Design Rules */
+        .futuristic-btn {
+            position: relative;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #ff3366;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.4);
+            border-radius: 4px;
+            margin-bottom: 30px; 
+        }
+        .futuristic-btn:hover {
+            background: #ff3366;
+            box-shadow: 0 0 25px rgba(255, 51, 102, 0.8);
+            text-shadow: 0 0 5px #fff;
+        }
+        .btn-text {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Custom container to style your ad blocks */
+        .adsense-container {
+            width: 100%;
+            max-width: 728px;
+            margin: 20px auto;
+            min-height: 90px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        }
     
         .site-footer {
             width: 100%;
@@ -140,9 +183,16 @@
                 gap: 0.2em;
             }
             .heading-logo {
-                height: 1.3em; /* Slightly scales down on mobile viewports to cleanly match device bounds */
-                /* 🟢 FIXED: Keeps the left shift uniform on mobile frames */
+                height: 1.3em; 
                 margin-left: -6px; 
+            }
+            .futuristic-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+            .adsense-container {
+                max-width: 320px;
+                min-height: 50px;
             }
         }
     </style>
@@ -151,16 +201,18 @@
 
     <!-- Persistent Background Video Matrix Layer -->
     <div class="video-background">
-      <video autoplay loop muted playsinline>
+      <video autoplay loop muted playsinline autoplay="autoplay" muted="muted">
         <source src="bgd.mp4" type="video/mp4">
+        Your browser does not support the video tag.
       </video>
       <div class="video-overlay"></div>
     </div>
 
+    <!-- Foreground Wrapper Structure -->
+    <div class="page-wrapper">
         
         <!-- Hero section containing initial loading display nodes -->
         <main class="content">
-            <!-- WELCOME TO text line and large image asset aligned together on the same horizontal grid path -->
             <h1>
                 <span>WELCOME TO</span> 
                 <img src="img1.png" alt="FILMYFLY" class="heading-logo">
@@ -171,10 +223,22 @@
                 <span class="btn-text">View Full SITE</span>
                 <span class="btn-glitch-layer"></span>
             </button>
+
+            <!-- ⚠️ GOOGLE ADSENSE RESPONSIVE DISPLAY AD UNIT -->
+            <div class="adsense-container">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-9973192182088068"
+                     data-ad-slot="1234567890"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
         </main>
 
-        
-        <!-- Absolute bottom viewport footer links element -->
+        <!-- Absolute bottom viewport footer elements -->
         <footer class="site-footer">
             <div class="footer-content">
                 <p>&copy; <span id="current-year"></span> FILMYFLY. All Rights Reserved.</p>
@@ -188,56 +252,52 @@
 
     <!-- JavaScript Link Controller Engine -->
     <script>
-        // Automatically calculate current year
+        // DOM Autoplay Fail-Safe
+        window.addEventListener('DOMContentLoaded', () => {
+            const video = document.querySelector('.video-background video');
+            if (video) {
+                video.muted = true;
+                video.play().catch(error => {
+                    console.log("Autoplay blocked by browser. Creating fallback click interaction trigger.");
+                    document.addEventListener('click', () => {
+                        video.play();
+                    }, { once: true });
+                });
+            }
+        });
+
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // Variable to keep track of the active countdown timer
         let clickInactivityTimer = null;
 
-        // Ensure script hooks cleanly to the button instance
         document.getElementById('download-link').addEventListener('click', function(event) {
             event.preventDefault();
 
-            // Clear the previous 10-second timer whenever a new click happens
+            const btnText = this.querySelector('.btn-text');
+
             if (clickInactivityTimer) {
                 clearTimeout(clickInactivityTimer);
             }
 
-            // Fetch click count or default to zero
+            clickInactivityTimer = setTimeout(() => {
+                sessionStorage.setItem('user_click_count', 0);
+                if (btnText) btnText.textContent = "View Full SITE";
+            }, 10000);
+
             let clickCount = parseInt(sessionStorage.getItem('user_click_count')) || 0;
-            
             clickCount++;
             sessionStorage.setItem('user_click_count', clickCount);
 
-            // Hook onto the text child element of the button to update feedback visually
-            const btnText = this.querySelector('.btn-text');
-
-            // Define destination URLs
             const adWebsite = "https://google.com";  
             const trueWebsite = "https://filmyfly.luxe"; 
 
-            // Process text changes based on click index
             if (clickCount === 1) {
                 if (btnText) btnText.textContent = "Processing (1/2)...";
                 window.open(adWebsite, '_blank', 'noopener,noreferrer');
             } else if (clickCount === 2) {
-                // Reverts button text instantly back to default state on second click
-                if (btnText) btnText.textContent = "View Full SITE";
+                if (btnText) btnText.textContent = "Processing (2/2)...";
                 window.open(adWebsite, '_blank', 'noopener,noreferrer');
             } else if (clickCount >= 3) {
-                sessionStorage.setItem('user_click_count', 0);
-                window.open(trueWebsite, '_blank', 'noopener,noreferrer');
-                return;
-            }
-
-            // 10-second idle timer fallback to reset counter tracking metrics back to baseline
-            clickInactivityTimer = setTimeout(function() {
+                clearTimeout(clickInactivityTimer);
                 sessionStorage.setItem('user_click_count', 0);
                 if (btnText) btnText.textContent = "View Full SITE";
-                console.log("Inactivity threshold reached. Click gateway has been reset.");
-            }, 10000); // 10 seconds threshold
-        });
-    </script>
-
-</body>
-</html>
