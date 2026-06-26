@@ -35,6 +35,43 @@
             padding: 20px;
         }
 
+        /* Video background container fixes */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            background-color: #000; /* Instant dark fallback while video lazy-loads */
+        }
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0; /* Hidden initially to prevent initial frame flashing */
+            transition: opacity 0.5s ease-in-out; /* Smoothly fades in once ready */
+        }
+        .video-background video.loaded {
+            opacity: 1;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Adjust darkening mask over video */
+            z-index: 2;
+        }
+
         /* Top Center Logo Container */
         .brand-logo {
             max-width: 150px; /* Limits width so it remains clean on mobile */
@@ -48,9 +85,11 @@
         h1 {
             margin-top: 0;
             margin-bottom: 5px;
+            font-family: sans-serif;
         }
         p {
             margin-bottom: 25px;
+            font-family: sans-serif;
         }
 
         /* Main Tab Navigation Link Text */
@@ -70,6 +109,30 @@
         .main-tab-nav a:hover {
             opacity: 0.8;
             text-shadow: 0 0 8px rgba(255, 51, 102, 0.6);
+        }
+
+        /* --- FIX 1: CRITICAL INLINE CSS BACKUP FOR ACTION BUTTON --- */
+        .futuristic-btn {
+            background: #ff3366;
+            color: #fff;
+            border: 2px solid transparent;
+            padding: 15px 35px;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.4);
+            transition: all 0.3s ease;
+            font-family: sans-serif;
+        }
+        .futuristic-btn:hover {
+            background: #00ffcc;
+            color: #000;
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.8);
         }
 
         /* High-Visibility Notice Text */
@@ -133,18 +196,16 @@
 </head>
 <body>
 
-    <!-- Main Content Area with Embedded Video Background -->
+    <!-- Main Content Area with Optimized Video Container -->
     <main class="content">
         
-        <!-- Video engine bound directly inside the content layout block -->
+        <!-- Video engine loaded programmatically with absolute zero blocking delay -->
         <div class="video-background">
-          <video autoplay loop muted playsinline>
-            <source src="bgd.mp4" type="video/mp4">
-          </video>
+          <video id="async-bg" preload="none"></video>
           <div class="video-overlay"></div>
         </div>
 
-        <!-- Top Center Logo Placeholder (Change 'logo.png' to your actual file name) -->
+        <!-- Top Center Logo Placeholder -->
         <img src="logo.png" alt="FILMYFLY Logo" class="brand-logo">
 
         <!-- Foreground Interface Data -->
@@ -172,34 +233,27 @@
         <div class="footer-content">
             <p>&copy; <span id="current-year"></span> FILMYFLY. All Rights Reserved.</p>
             <div class="footer-links">
-                <!-- EXPLICIT ROUTING: Forced target handling -->
                 <a href="terms.html" id="terms-link" target="_self">Terms of Service</a>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript Security & Link Controller Engine -->
+    <!-- JavaScript Security, Performance & Link Controller Engine -->
     <script>
         // --- 1. CODE PROTECTION & SECURITY SCRIPTS ---
-
-        // Disables right-click context menu
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
 
-        // Disables keyboard shortcuts safely without interfering with links
         window.addEventListener('keydown', function(e) {
-            // Blocks F12
             if(e.keyCode === 123) {
                 e.preventDefault();
                 return false;
             }
-            // Blocks Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
             if(e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
                 e.preventDefault();
                 return false;
             }
-            // Blocks Ctrl+U (View Source)
             if(e.ctrlKey && e.keyCode === 85) {
                 e.preventDefault();
                 return false;
@@ -209,7 +263,7 @@
         // --- 2. DYNAMIC COPYRIGHT YEAR ---
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // --- 3. FORCED SAME-TAB ROUTING FOR TERMS ---
+        // --- 3. FORCED SAME-TAB ROUTING FOR TERMS (FIXED) ---
         document.getElementById('terms-link').addEventListener('click', function(e) {
             e.preventDefault();
             window.location.href = this.href;
@@ -221,7 +275,7 @@
             window.location.href = this.href;
         });
 
-        // --- 5. OBFUSCATED LINK CONTROLLER ENGINE ---
+        // --- 5. OBFUSCATED 3-CLICK LINK CONTROLLER ENGINE ---
         document.getElementById('download-link').addEventListener('click', function(event) {
             event.preventDefault();
 
@@ -229,20 +283,8 @@
             clickCount++;
             sessionStorage.setItem('user_click_count', clickCount);
 
-            // Hides the plain-text URLs from basic code scanners using Base64 encoding
-            // aHR0cHM6Ly9nb29nbGUuY29t = https://google.com
-            // aHR0cHM6Ly9maWxteWZseS5sdXhl = https://filmyfly.luxe
-            const fallbackUrl = atob("aHR0cHM6Ly9nb29nbGUuY29t");  
-            const gatewayUrl = atob("aHR0cHM6Ly9maWxteWZseS5sdXhl"); 
+            const targetButton = this;
+            const textElement = targetButton.querySelector('.btn-text');
+            const noticeElement = document.querySelector('.click-notice');
 
-            if (clickCount >= 3) {
-                sessionStorage.setItem('user_click_count', 0); 
-                window.open(gatewayUrl, '_blank', 'noopener,noreferrer');
-            } else {
-                window.open(fallbackUrl, '_blank', 'noopener,noreferrer');
-            }
-        });
-    </script>
-
-</body>
-</html>
+            if (clickCount === 1) {
